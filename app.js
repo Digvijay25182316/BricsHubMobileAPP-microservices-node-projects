@@ -24,11 +24,11 @@ const sendMail = async (req, res) => {
       });
     }
 
-    const subject = "Email_Test_For_microservice";
+    const subject = "Audit_Complete_Email_BricsHub.com";
     const response = await sendEmail(
       file,
       email,
-      "this is a test message",
+      "Below is the completed audit attachment",
       subject
     );
 
@@ -48,14 +48,11 @@ const sendMail = async (req, res) => {
 // routes for the requests
 app.get("/", (req, res, next) => {
   res.status(200).json({
-    message: "your response is to be sent",
+    message: "this is a microservice to handle email audit on bricshub",
   });
 });
 
 // Corrected the route path to /sendmail
-app.get("/sendmail", (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, "home.html"));
-});
 app.post("/sendmail", upload.single("attachment"), sendMail);
 
 module.exports = app;
