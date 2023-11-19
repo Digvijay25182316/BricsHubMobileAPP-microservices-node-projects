@@ -46,7 +46,7 @@ const sendMail = async (req, res) => {
 };
 
 // routes for the requests
-app.get("/", (req, res, next) => {
+app.get("/", (req, res) => {
   res.status(200).json({
     message: "this is a microservice to handle email audit on bricshub",
   });
@@ -54,5 +54,12 @@ app.get("/", (req, res, next) => {
 
 // Corrected the route path to /sendmail
 app.post("/sendmail", upload.single("attachment"), sendMail);
+
+app.get("*", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "you have came to a wrong page",
+  });
+});
 
 module.exports = app;
